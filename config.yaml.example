@@ -1,0 +1,55 @@
+# Frozen Pipe Analyzer Configuration
+
+# GPS Location (default: example coordinates)
+location:
+  latitude: 42.3601
+  longitude: -71.0589
+  name: "Kitchen Area"
+
+# Weather API Configuration
+# Get your free API key from https://openweathermap.org/api
+weather_api:
+  provider: "openweathermap"
+  api_key: "YOUR_API_KEY_HERE"
+  # Alternative: weatherapi.com, visualcrossing.com
+
+# Data Collection Settings
+data_collection:
+  interval_minutes: 30  # How often to collect data
+  storage_path: "data/observations.csv"
+
+# Pipe Freezing Thresholds and Parameters
+pipe_parameters:
+  # Temperature at which pipe has been observed to freeze
+  observed_freeze_temp_f: 28
+  # Temperatures at which pipe did NOT freeze (colder)
+  observed_no_freeze_temps_f: [15, 10, 5]
+  # Pipe location details
+  pipe_location: "North-facing exterior wall"
+  insulation_level: "minimal"
+
+# Analysis Parameters
+analysis:
+  # Factors to consider
+  factors:
+    - temperature
+    - wind_chill
+    - wind_direction
+    - wind_speed
+    - humidity
+    - precipitation
+    - duration_below_threshold
+    - solar_radiation
+
+  # Wind direction that may expose pipe (degrees, 0=North)
+  vulnerable_wind_directions: [0, 45, 315]  # North, NE, NW
+  vulnerable_direction_tolerance: 30  # degrees
+
+  # Minimum duration (hours) of cold exposure to consider
+  min_cold_duration_hours: 2
+
+# Hypothesis Testing
+hypothesis:
+  # Generate reports when conditions match these criteria
+  alert_on_freeze_risk: true
+  confidence_threshold: 0.7
